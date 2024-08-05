@@ -15,16 +15,26 @@
 }
 
 .sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid rgb(87, 87, 87);
+  border-radius: 20px;
+  padding: 10px;
   width: 100%;
+}
+
+.profile__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  border: 1px solid rgb(87, 87, 87);
-  padding: 10px;
-  border-radius: 20px;
+  padding-right: 10px;
 }
 
-.sidebar-profile a {
+.profile__content a {
   text-decoration: none;
   color: black;
   font-size: 14px;

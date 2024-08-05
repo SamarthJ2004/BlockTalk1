@@ -15,8 +15,11 @@ const Sidebar = ({ account }) => {
         <div className="sidebar-item"><i className="fas fa-ellipsis-h icon"></i> More</div>
       </div>
       <div className='sidebar-profile'>
-        <a href="/profile">My Profile</a><br />
-        {account}
+        <i className="far fa-user icon" />
+        <div className='profile__content'>
+          <a href="/profile">My Profile</a>
+          {account}
+        </div>
       </div>
     </div>
   );
