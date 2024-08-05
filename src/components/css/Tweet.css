@@ -6,6 +6,7 @@
     margin: 10px 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     position: relative;
+    width: 100%;
 }
 
 .post__body {
@@ -17,20 +18,18 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 8px;
-}
-
-.post__header {
-    margin-bottom: 16px;
+    text-transform: capitalize;
 }
 
 .post__headerText {
+    margin-bottom: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .post__displayName {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: #1da1f2;
 }
 
@@ -53,14 +52,15 @@
 }
 
 .post__footer>* {
-    margin-right: 8px;
     cursor: pointer;
-}
-
-.post__footer>*:last-child {
-    margin-right: 0;
 }
 
 .post__footer>*:hover {
     color: #1da1f2;
+}
+
+.post__footer div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

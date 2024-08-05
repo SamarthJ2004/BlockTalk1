@@ -10,20 +10,23 @@
   max-width: 20%;
 }
 
+.sidebar-main {
+  width: 100%;
+}
+
 .sidebar-profile {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  z-index: 20;
   border: 1px solid rgb(87, 87, 87);
   padding: 10px;
   border-radius: 20px;
 }
 
-.sidebar-profile a{
+.sidebar-profile a {
   text-decoration: none;
-  color:black;
+  color: black;
   font-size: 14px;
   font-weight: bold;
 }

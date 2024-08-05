@@ -21,16 +21,16 @@ function MainContent({ personal }) {
         'tweetText': tweet.tweetText,
         'isDeleted': tweet.isDeleted,
         'username': tweet.username,
-        'upvote': tweet.upvote._hex,
-        'downvote': tweet.downvote._hex,
-        'time': tweet.time._hex,
+        'upvote': parseInt(tweet.upvote._hex, 16),
+        'downvote': parseInt(tweet.downvote._hex, 16),
+        'time': parseInt(tweet.time._hex, 16),
         'reward': tweet.reward,
         'personal': isPersonal
       };
 
       updatedTweets.push(updatedTweet);
     }
-    return updatedTweets;
+    return updatedTweets.reverse();
   }
 
   const getTweets = async () => {
