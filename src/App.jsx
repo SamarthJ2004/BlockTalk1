@@ -3,7 +3,8 @@ import './App.css';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import RightSidebar from './components/RightSidebar';
-import Init from './components/Init'; 
+import Init from './components/Init';
+import { SEPOLIA_ID } from './config';
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState('');
@@ -20,7 +21,7 @@ function App() {
 
       let chainId = await ethereum.request({ method: 'eth_chainId' });
       console.log('Connected to chain:' + chainId);
-      const sepoliaChainId = '0xaa36a7';
+      const sepoliaChainId = SEPOLIA_ID;
 
       if (chainId !== sepoliaChainId) {
         alert('You are not connected to the Sepolia Testnet!');
@@ -43,7 +44,7 @@ function App() {
     let chainId = await ethereum.request({ method: 'eth_chainId' });
     console.log('Connected to chain:' + chainId);
 
-    const sepoliaChainId = '0xaa36a7';
+    const sepoliaChainId = SEPOLIA_ID;
 
     setCorrectNetwork(chainId === sepoliaChainId);
   };
@@ -60,7 +61,7 @@ function App() {
         <Init connectWallet={connectWallet} />
       ) : correctNetwork ? (
         <div className="app">
-          <Sidebar account={currentAccount}/>
+          <Sidebar account={currentAccount} />
           <MainContent />
           <RightSidebar />
         </div>

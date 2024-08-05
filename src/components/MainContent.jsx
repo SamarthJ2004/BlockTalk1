@@ -4,9 +4,10 @@ import Post from './Post';
 import Tweet from './Tweet';
 import { ethers } from 'ethers';
 import Twitter from '../jsonFiles/BlockTalkContract.json';
+import { BLOCKTALK_CONTRACT } from '../config';
 
-function MainContent({ personal }) {
-  const TwitterContractAddress = "0xB918f0Dd469600a45D2cC12a2B6b7b0745755D22";
+function MainContent() {
+  const TwitterContractAddress = BLOCKTALK_CONTRACT;
   const [post, setPost] = useState([]);
 
   const getUpdatedTweets = (allTweets, address) => {
@@ -61,37 +62,8 @@ function MainContent({ personal }) {
     getTweets();
   }, []);
 
-  // const deleteTweet = key => async() => {
-  //   console.log(key);
-
-  //   // Now we got the key, let's delete our tweet
-  //   try {
-  //     const {ethereum} = window
-
-  //     if(ethereum) {
-  //       const provider = new ethers.providers.Web3Provider(ethereum);
-  //       const signer = provider.getSigner();
-  //       const TwitterContract = new ethers.Contract(
-  //         TwitterContractAddress,
-  //         Twitter.abi,
-  //         signer
-  //       );
-
-  //       let deleteTweetTx = await TwitterContract.deleteTweet(key, true);
-  //       let allTweets = await TwitterContract.getAllTweets();
-  //       setPosts(getUpdatedTweets(allTweets, ethereum.selectedAddress));
-  //     } else {
-  //       console.log("Ethereum object doesn't exist");
-  //     }
-
-  //   } catch(error) {
-  //     console.log(error);
-  //   }
-  // }
-
   return (
     <div className="main-content feed">
-      <h2>Home</h2>
       <Post />
       {post.map((post) => (
         <Tweet
