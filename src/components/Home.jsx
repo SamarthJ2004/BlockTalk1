@@ -5,7 +5,6 @@ import { SEPOLIA_ID } from '../config';
 import MainPage from './MainPage';
 
 function Home() {
-
   const [currentAccount, setCurrentAccount] = useState('');
   const [correctNetwork, setCorrectNetwork] = useState(false);
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ function Home() {
       if (!ethereum) {
         console.log('Metamask not detected');
         window.alert("Connect to Metamask");
-        window.location = "https://metamask.io/"
+        window.location = "https://metamask.io/";
         return;
       }
 
@@ -57,19 +56,25 @@ function Home() {
     }
   }, [currentAccount]);
 
+  useEffect(() => {
+    if (currentAccount && correctNetwork) {
+      navigate('/home');
+    }
+  }, [currentAccount, correctNetwork, navigate]);
+
   return (
     <div>
       {currentAccount === '' ? (
         <Init connectWallet={connectWallet} />
-      ) : correctNetwork ? (
-        navigate("/home")
-      ) : (
+      ) : !correctNetwork ? (
         <div className='flex flex-col justify-center items-center mb-20 font-bold text-2xl gap-y-3'>
           <div>----------------------------------------</div>
           <div>Please connect to the Sepolia Testnet</div>
           <div>and reload the page</div>
           <div>----------------------------------------</div>
         </div>
+      ) : (
+        <div>Redirecting to /home...</div>
       )}
     </div>
   );
