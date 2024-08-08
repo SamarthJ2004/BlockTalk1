@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import '../App.css'
-import Sidebar from './Sidebar';
-import MainContent from './MainContent';
-import RightSidebar from './RightSidebar';
+import { useNavigate } from 'react-router-dom';
 import Init from './Init';
 import { SEPOLIA_ID } from '../config';
+import MainPage from './MainPage';
 
 function Home() {
 
   const [currentAccount, setCurrentAccount] = useState('');
   const [correctNetwork, setCorrectNetwork] = useState(false);
+  const navigate = useNavigate();
 
   const connectWallet = async () => {
     try {
@@ -18,7 +17,7 @@ function Home() {
       if (!ethereum) {
         console.log('Metamask not detected');
         window.alert("Connect to Metamask");
-        window.location="https://metamask.io/"
+        window.location = "https://metamask.io/"
         return;
       }
 
@@ -63,11 +62,7 @@ function Home() {
       {currentAccount === '' ? (
         <Init connectWallet={connectWallet} />
       ) : correctNetwork ? (
-        <div className="app">
-          <Sidebar account={currentAccount} />
-          <MainContent />
-          <RightSidebar />
-        </div>
+        navigate("/home")
       ) : (
         <div className='flex flex-col justify-center items-center mb-20 font-bold text-2xl gap-y-3'>
           <div>----------------------------------------</div>

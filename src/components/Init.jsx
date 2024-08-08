@@ -9,7 +9,7 @@ function Init({ connectWallet }) {
           <h1>Welcome to BlockTalk</h1>
           <h2>Speak Freely, Share Boldly.</h2>
         </div>
-        <button onClick={connectWallet}>Connect Wallet</button>
+        <button onClick={connectWallet} route="/home">Connect Wallet</button>
       </div>
     </div>
   );
