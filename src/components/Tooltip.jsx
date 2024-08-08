@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import './css/Tooltip.css'; 
+import { useNavigate } from 'react-router-dom';
+import './css/Tooltip.css';
 
-const Tooltip = ({account}) => {
+const Tooltip = ({ account }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div
@@ -10,18 +12,15 @@ const Tooltip = ({account}) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className='profile'>
-      <div><i className="far fa-user icon" /></div>
-      <div>My profile</div>
+      <div className='profile' onClick={() => navigate("/profile")}>
+        <div><i className="far fa-user icon" /></div>
+        <div>My profile</div>
       </div>
-      
+
       {isHovered && (
-        
-        
         <div className='tooltip-content'>
-         My Address: {account}
-        
-      </div>
+          My Address: {account}
+        </div>
       )}
     </div>
   );

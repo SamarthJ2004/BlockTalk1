@@ -31,19 +31,19 @@ const Tweet = forwardRef(
       <div className="post" ref={ref} key={id}>
 
         <div className="post__body">
-          <h2 className="post__title">{title}</h2>
+          <h2 className="post__title">{title || "No Title"}</h2>
 
           <div className="post__headerText">
-            <h3 className="post__displayName">{displayName}</h3>
+            <h3 className="post__displayName">Author: {personal ? "Your Tweet" : displayName}</h3>
             <span className="post__time">{days > 0 && `${days} day(s) `}
               {hours > 0 && `${hours} hours`}
               {(days === 0 && hours === 0) ? 'Just now' : ' ago'}</span>
           </div>
 
-          <div className="post__headerDescription">{text}</div>
+          <div className="post__headerDescription">{text || "No Body"}</div>
 
           <div className="post__footer">
-            <BookmarkIcon fontSize="small"  />
+            <BookmarkIcon fontSize="small" />
             <DeleteIcon fontSize='small' onClick={() => EtherFunc({ id, func: 'deleteTweet', message: "The tweet was deleted" })} />
             <div>
               <ThumbUpIcon fontSize="small" onClick={() => EtherFunc({ id, func: 'upvote', message: "The vote was increased" })} /> {upvote}
