@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Sidebar from './Sidebar';
 import MainContent from './MainContent';
 import RightSidebar from './RightSidebar';
@@ -7,7 +7,7 @@ import '../App.css'
 const MainPage = () => {
     return (
         <div className="app">
-            <Sidebar/>
+            <Sidebar />
             <MainContent />
             <RightSidebar />
         </div>
