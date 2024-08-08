@@ -25,7 +25,7 @@ const Sidebar = () => {
         <SidebarItem icon="fa-solid fa-heart" text="My Likes" route="/likes" />
         <SidebarItem icon="fas fa-ellipsis-h" text="More" route="/more" />
       </div>
-      <Tooltip account={currentAccount} />
+      <Tooltip account={currentAccount} route="/profile"/>
     </div>
   );
 }

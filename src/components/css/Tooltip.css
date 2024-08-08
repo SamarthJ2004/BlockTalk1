@@ -27,20 +27,16 @@
   display: block;
 }
 
+.profile {
+  display: flex;
+  column-gap: 10px;
+  cursor: pointer;
+  padding-left: 20px;
+}
 
-
-  .profile{
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-  }
-
-  .profile__content {
-    width: 150px;        
-    white-space: nowrap;  
-    overflow: hidden;     
-    text-overflow: ellipsis; 
-  }
-  
-
-  
+.profile__content {
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

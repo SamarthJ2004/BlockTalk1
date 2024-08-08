@@ -4,6 +4,7 @@ import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Updates from './components/Updates';
 import MainPage from './components/MainPage';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path='/home' element={<MainPage/>} />
         <Route path="/explore" element={<Updates />} />
+        <Route path='/profile' element={<Profile/>}/>
       </Routes>
     </Router>
   );
