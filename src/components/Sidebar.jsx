@@ -3,6 +3,7 @@ import './css/Sidebar.css';
 import Tooltip from './Tooltip';
 import SidebarItem from './SidebarItem';
 
+
 const Sidebar = () => {
   const [currentAccount, setCurrentAccount] = useState('');
 

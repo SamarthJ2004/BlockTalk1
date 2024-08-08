@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/RightSidebar.css';
+import TrendingTweets from './Trending';
 
 const RightSidebar = () => {
   return (
@@ -11,6 +12,7 @@ const RightSidebar = () => {
         <h3>Subscribe to Premium</h3>
         <button className="subscribe-button">Subscribe</button>
       </div>
+      < TrendingTweets />
       <div className="right-sidebar-item">
         <h3>What's happening</h3>
         <div className="happening-item">Esports World Cup 2024</div>
