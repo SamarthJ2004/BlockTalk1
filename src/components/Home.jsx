@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Init from './Init';
 import { SEPOLIA_ID } from '../config';
-import MainPage from './MainPage';
 
 function Home() {
   const [currentAccount, setCurrentAccount] = useState('');
