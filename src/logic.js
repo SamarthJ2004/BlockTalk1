@@ -14,12 +14,22 @@ const EtherFunc = async ({ func, id, message }) => {
                 TwitterContractAddress,
                 Twitter.abi,
                 signer
-            )
+            );
 
-            if (func == 'deleteTweet') await TwitterContract.deleteTweet(id, true);
-            else if (func == 'upvote') await TwitterContract.upvote(id);
-            else if (func == 'downvote') await TwitterContract.downvote(id);
-            else if (func == 'addTweet') await TwitterContract.addTweet(id.tweetTitle, id.tweetMessage, false);
+            if (func === 'deleteTweet') {
+                await TwitterContract.deleteTweet(id, true);
+            } else if (func === 'upvote') {
+                await TwitterContract.upvote(id);
+            } else if (func === 'downvote') {
+                await TwitterContract.downvote(id);
+            } else if (func === 'addTweet') {
+                await TwitterContract.addTweet(id.tweetTitle, id.tweetMessage, false);
+            } else if (func === 'trending') {
+                // Fetch trending tweets
+                const trendingTweets = await TwitterContract.getTrendingTweets();
+                return trendingTweets;  // Return the trending tweets
+            }
+
             console.log({ message });
         } else {
             console.log("Ethereum object doesn't exist");
@@ -27,6 +37,6 @@ const EtherFunc = async ({ func, id, message }) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 export default EtherFunc;
