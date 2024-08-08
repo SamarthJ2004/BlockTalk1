@@ -1,22 +1,31 @@
 .profile-page {
-  max-width: 50%;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
-  color: #14171A;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 1px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+  max-width: 40%;
+}
+
+.pro::-webkit-scrollbar {
+  display: none;
 }
 
 .profile-banner {
-  height: 300px;
+  height: 600px;
   background-color: #1DA1F2;
   background-size: cover;
   background-position: center;
   position: relative;
+  width: 100%;
 }
 
 .profile-info {
   padding: 15px;
   background-color: white;
   border-bottom: 1px solid #E1E8ED;
+  width:100%;
 }
 
 .profile-pic {
@@ -62,6 +71,9 @@
   margin-top: 20px;
   padding: 20px;
   background-color: white;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .profile-tabs {

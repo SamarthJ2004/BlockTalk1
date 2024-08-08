@@ -13,6 +13,6 @@
   max-width: 40%;
 }
 
-.your-element::-webkit-scrollbar {
+.main-content::-webkit-scrollbar {
   display: none;
 }
