@@ -8,11 +8,14 @@ import Profile from './components/Profile';
 import axios from 'axios'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Communities from './components/Communities';
 
 function App() {
 
+  const [communities, setCommunities] = useState([]);
+
   useEffect(() => {
-    axios.get('http://localhost:3009/api/data', { withCredentials: true })
+    axios.get('http://localhost:3010/api/data', { withCredentials: true })
         .then(() => {
             console.log("backend frontend connected");
         })
@@ -21,6 +24,16 @@ function App() {
         });
 }, []);
 
+
+useEffect(() => {
+  axios.get('http://localhost:3010/communities')
+      .then(response => {
+          setCommunities(response.data.account);
+      })
+      .catch(error => {
+          console.error('Error fetching communities:', error);
+      });
+}, []);
 
   const [currentAccount, setCurrentAccount] = useState('');
 
@@ -33,7 +46,7 @@ function App() {
 
   const sendAccountToBackend = async () => {
     try {
-      const response = await axios.post('http://localhost:3009/api/account', {
+      const response = await axios.post('http://localhost:3010/api/account', {
         account: currentAccount,
       });
       console.log('Account sent successfully:', response.data);
@@ -61,6 +74,8 @@ function App() {
         <Route path='/home' element={<MainPage/>} />
         <Route path="/explore" element={<Updates />} />
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/communities' element={<Communities />}/>
+        
       </Routes>
     </Router>
   );

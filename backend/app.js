@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+
 const app = express();
+
+app.set('view engine', 'ejs');
 
 app.use(cors({
     origin: 'http://localhost:5173', 
@@ -66,6 +69,15 @@ app.post('/api/account', (req, res) => {
         });
 });
 
-app.listen(3009, () => {
-    console.log('Server is running on port 3009');
+
+app.get('/communities', (req,res)=>{
+    AccountModel.find()
+    .then(()=>{console.log("done")} )
+    .catch((err)=>{console.log(err)})
+    
+})
+
+
+app.listen(3010, () => {
+    console.log('Server is running on port 3010');
 });
