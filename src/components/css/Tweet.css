@@ -24,7 +24,7 @@
 .post__headerText {
     margin-bottom: 16px;
     display: flex;
-    justify-content: space-between;
+    column-gap: 8%;
     align-items: center;
 }
 
