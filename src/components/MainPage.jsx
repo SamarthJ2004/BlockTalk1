@@ -1,7 +1,8 @@
 import React from 'react';
 import Sidebar from './Sidebar';
-import MainContent from './MainContent';
+
 import RightSidebar from './RightSidebar';
+import MainContent from './MainContent';
 import '../App.css'
 
 const MainPage = () => {

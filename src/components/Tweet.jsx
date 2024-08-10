@@ -6,6 +6,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EtherFunc from '../logic';
+import BookmarkButton from './BookmarkButton';
 
 const Tweet = forwardRef(
   ({ id, displayName, title, text, time, personal, upvote, downvote }, ref) => {
@@ -43,7 +44,7 @@ const Tweet = forwardRef(
           <div className="post__headerDescription">{text || "No Body"}</div>
 
           <div className="post__footer">
-            <BookmarkIcon fontSize="small" />
+            <BookmarkButton userId={id} postId={displayName}></BookmarkButton>
             <DeleteIcon fontSize='small' onClick={() => EtherFunc({ id, func: 'deleteTweet', message: "The tweet was deleted" })} />
             <div>
               <ThumbUpIcon fontSize="small" onClick={() => EtherFunc({ id, func: 'upvote', message: "The vote was increased" })} /> {upvote}
