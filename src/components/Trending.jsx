@@ -46,7 +46,5 @@ const TrendingTweets = () => {
       )}
     </div>
   );
-};
-
+}
 export default TrendingTweets;
-
