@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
-const BookmarkButton = ({ postId }) => {
-  const [userId, setUserId] = useState('');
+const BookmarkButton = ({ title, text, displayName }) => {
 
-  useEffect(() => {
-    const fetchUserAddress = async () => {
-      const address = await getUserAddress();
-      setUserId(address);
-    };
+  const [currentAccount, setCurrentAccount] = useState('');
+  const getAccount = async () => {
+    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+    setCurrentAccount(accounts[0]);
+  }
 
-    fetchUserAddress();
-  }, []);
+  getAccount();
+
 
   const handleBookmark = async () => {
-    if (!userId || !postId) {
-      alert('User ID or Post ID is missing');
-      return;
-    }
-
     try {
-      await axios.post('http://localhost:3010/api/bookmarks', { userId, postId }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      await axios.post('http://localhost:3011/api/bookmarks', 
+        { 
+          title: title, 
+          body: text, 
+          acc: displayName
+          
+        }, 
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       alert('Bookmarked successfully!');
     } catch (error) {
       console.error('Error bookmarking:', error);

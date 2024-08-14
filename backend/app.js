@@ -4,20 +4,19 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 
+
 const app = express();
-
 app.set('view engine', 'ejs');
-
 app.use(cors({
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
-
 app.use(bodyParser.json());
 
 
+//mongo
 const URL = "mongodb+srv://anushka:anushkas@cluster0.w2aa386.mongodb.net/project?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose.connect(URL)
@@ -30,7 +29,7 @@ mongoose.connect(URL)
 
 
 const AccountSchema = new mongoose.Schema({
-    account: { type: String, required: true, unique: true },
+    account: { type: String, required: true },
     timestamp: { type: Date, default: Date.now }
 });
 
@@ -40,8 +39,6 @@ const AccountModel = mongoose.model('Account', AccountSchema);
 app.get('/api/data', (req, res) => {
     res.json({ message: 'CORS is enabled!' });
 });
-
-
 
 app.post('/api/account', (req, res) => {
     const { account } = req.body;
@@ -67,6 +64,11 @@ app.post('/api/account', (req, res) => {
         });
 });
 
+
+
+
+
+
 app.get('/communities', async (req, res) => {
     try {
         console.log("Fetching communities...");
@@ -80,30 +82,58 @@ app.get('/communities', async (req, res) => {
     }
 });
 
-const BookmarkSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, required: true },
-    postId: { type: mongoose.Schema.Types.ObjectId, required: true },
-  });
-  
-  const BookmarkModel = mongoose.model('Bookmark', BookmarkSchema);
 
-  app.post('/api/bookmarks', async (req, res) => {
-    const { userId, postId } = req.body;
+
+
+//bookmark
+
+
+const BookmarkSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    body: { type: String, required: true },
+    acc: { type: String, required: true },
+    
+
+});
+
+const BookmarkModel = mongoose.model('Bookmark', BookmarkSchema);
+
+
+app.post('/api/bookmarks', async (req, res) => {
+    const { title, body, acc } = req.body;
   
-    if (!userId || !postId) {
-      return res.status(400).json({ message: 'User ID and Post ID are required' });
+    if (!title || !body || !acc) {
+      return res.status(400).json({ message: 'Title, body, and account name are required' });
     }
   
     try {
-      const bookmark = new BookmarkModel({ userId, postId });
+      const bookmark = new BookmarkModel({ title, body, acc });
       await bookmark.save();
       res.status(201).json({ message: 'Bookmark saved successfully', bookmark });
     } catch (error) {
       console.error('Error saving bookmark:', error);
       res.status(500).json({ message: 'Error saving bookmark', error });
     }
-  });
+});
+
+
+app.get('/bookmarks', async (req, res) => {
+    try {
+        console.log("Fetching bookmarks...");
+        res.setHeader('Content-Type', 'application/json');
+        const data = await BookmarkModel.find();
+        console.log('Data fetched:', data); // Log the fetched data
+        res.json(data); // Ensure data is sent as JSON
+    } catch (error) {
+        console.error('Error fetching communities:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
   
+
+
+
+
 
 app.listen(3011, () => {
     console.log('Server is running on port 3011');

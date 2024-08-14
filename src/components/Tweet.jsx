@@ -44,7 +44,7 @@ const Tweet = forwardRef(
           <div className="post__headerDescription">{text || "No Body"}</div>
 
           <div className="post__footer">
-            <BookmarkButton userId={id} postId={displayName}></BookmarkButton>
+            <BookmarkButton displayName={displayName} title={title} text={text}></BookmarkButton>
             <DeleteIcon fontSize='small' onClick={() => EtherFunc({ id, func: 'deleteTweet', message: "The tweet was deleted" })} />
             <div>
               <ThumbUpIcon fontSize="small" onClick={() => EtherFunc({ id, func: 'upvote', message: "The vote was increased" })} /> {upvote}
