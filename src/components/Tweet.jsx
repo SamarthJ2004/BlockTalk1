@@ -38,7 +38,8 @@ const Tweet = forwardRef(
             <h3 className="post__displayName">Author: {personal ? "Your Tweet" : displayName}</h3>
             <span className="post__time">{days > 0 && `${days} day(s) `}
               {hours > 0 && `${hours} hours`}
-              {(days === 0 && hours === 0) ? 'Just now' : ' ago'}</span>
+              {(days === 0 && hours === 0) ? 'Just now' : ' ago'}
+            </span>
           </div>
 
           <div className="post__headerDescription">{text || "No Body"}</div>
