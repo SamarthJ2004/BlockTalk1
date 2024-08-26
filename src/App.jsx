@@ -15,7 +15,7 @@ function App() {
   const [communities, setCommunities] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3011/api/data', { withCredentials: true })
+    axios.get('https://blocktalk-backend-94xs.onrender.com/api/data', { withCredentials: true })
         .then(() => {
             console.log("backend frontend connected");
         })
@@ -25,7 +25,7 @@ function App() {
 }, []);
 
 useEffect(() => {
-  axios.get('http://localhost:3011/communities')
+  axios.get('https://blocktalk-backend-94xs.onrender.com/communities')
       .then(response => {
           setCommunities(response.data.account);
       })
@@ -45,7 +45,7 @@ useEffect(() => {
 
   const sendAccountToBackend = async () => {
     try {
-      const response = await axios.post('http://localhost:3011/api/account', {
+      const response = await axios.post('https://blocktalk-backend-94xs.onrender.com/api/account', {
         account: currentAccount,
       });
       console.log('Account sent successfully:', response.data);
