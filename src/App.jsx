@@ -24,7 +24,6 @@ function App() {
         });
 }, []);
 
-
 useEffect(() => {
   axios.get('http://localhost:3011/communities')
       .then(response => {
@@ -61,12 +60,6 @@ useEffect(() => {
     }
   }, [currentAccount]);
 
-  
-
-
-
-  
-
   return (
     <Router>
       <Routes>
@@ -75,7 +68,6 @@ useEffect(() => {
         <Route path="/explore" element={<Updates />} />
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/communities' element={<Com/>}/>
-        
       </Routes>
     </Router>
   );

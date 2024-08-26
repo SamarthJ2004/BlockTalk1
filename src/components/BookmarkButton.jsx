@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { useState } from 'react';
 
 const BookmarkButton = ({ title, text, displayName }) => {
 
@@ -15,12 +16,11 @@ const BookmarkButton = ({ title, text, displayName }) => {
 
   const handleBookmark = async () => {
     try {
-      await axios.post('http://localhost:3011/api/bookmarks', 
+      await axios.post('http://localhost:3011/api/bookmarks',
         { 
           title: title, 
           body: text, 
           acc: displayName
-          
         }, 
         {
           headers: {
