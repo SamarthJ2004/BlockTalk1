@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import './components/css/Communities.css';
-import "./components/css/MainContent.css";
+import './css/Communities.css';
+import "./css/MainContent.css";
 
 const New = () => {
   const [communities, setCommunities] = useState([]);

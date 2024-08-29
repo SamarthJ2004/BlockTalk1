@@ -2,16 +2,15 @@ import React from 'react';
 import axios from 'axios';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
-const BookmarkButton = ({ title, text, displayName }) => {
+const BookmarkButton = ({ id, displayName }) => {
 
   const handleBookmark = async () => {
     try {
       await axios.post('http://localhost:3011/api/bookmarks',
-        { 
-          title: title, 
-          body: text, 
+        {
+          tweetId: id,
           acc: displayName
-        }, 
+        },
         {
           headers: {
             'Content-Type': 'application/json',

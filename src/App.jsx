@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Com from './components/Com';
 import Working from './components/Working';
+import Bookmarks from './components/Bookmarks';
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState('');
@@ -53,6 +54,7 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/communities' element={<Com />} />
         <Route path='/working' element={<Working />} />
+        <Route path='/bookmarks' element={<Bookmarks/>}/>
       </Routes>
     </Router>
   );

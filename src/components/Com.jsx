@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import New from '../New'
+import New from './New'
 import RightSidebar from './RightSidebar'
 import "../App.css";
 

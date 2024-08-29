@@ -25,16 +25,14 @@ mongoose.connect(URL)
   });
 
 const AccountSchema = new mongoose.Schema({
-  account: { type: String, required: true },
+  account: { type: String, required: true, unique: true },
   timestamp: { type: Date, default: Date.now }
 });
 const AccountModel = mongoose.model('Account', AccountSchema);
 
-//bookmark
 const BookmarkSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  body: { type: String, required: true },
   acc: { type: String, required: true },
+  tweetId: { type: String, required: true }
 });
 const BookmarkModel = mongoose.model('Bookmark', BookmarkSchema);
 
@@ -54,9 +52,13 @@ app.post('/api/account', (req, res) => {
       res.status(201).json({ message: 'Account saved successfully', data });
     })
     .catch(err => {
-      console.error('Error saving account(may already exist):', err);
-      if (err.code === 11000) res.status(400).json({ message: 'Account already exists' });
-      else res.status(500).json({ message: 'Error saving account', error: err });
+      if (err.code === 11000) {
+        res.status(400).json({ message: 'Account already exists' });
+        console.log('Account already exits!!!');
+      } else {
+        res.status(500).json({ message: 'Error saving account', error: err });
+        console.error('Error saving account:', err);
+      }
     });
 });
 
@@ -72,33 +74,40 @@ app.get('/communities', async (req, res) => {
   }
 });
 
-app.post('/api/bookmarks', async (req, res) => {
-  const { title, body, acc } = req.body;
+app.post('/bookmarks', async (req, res) => {
+  const { account } = req.body;
+  console.log('This is the account i got: ', account);
+  try {
+    console.log("Fetching bookmarks...");
+    res.setHeader('Content-Type', 'application/json');
+    const data = await BookmarkModel.find().select('-__v');
+    console.log('Data fetched:', data);
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching bookmarks:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
-  if (!title || !body || !acc) {
-    return res.status(400).json({ message: 'Title, body, and account name are required' });
+app.post('/api/bookmarks', async (req, res) => {
+  const { tweetId, acc } = req.body;
+
+  if (!tweetId || !acc) {
+    return res.status(400).json({ message: 'tweetId and account are required' });
   }
 
   try {
-    const bookmark = new BookmarkModel({ title, body, acc });
+    const existingBookmark = await BookmarkModel.findOne({ tweetId, acc });
+
+    if (existingBookmark) {
+      return res.status(400).json({ message: 'Bookmark already exists for this account' });
+    }
+    const bookmark = new BookmarkModel({ tweetId, acc });
     await bookmark.save();
     res.status(201).json({ message: 'Bookmark saved successfully', bookmark });
   } catch (error) {
     console.error('Error saving bookmark:', error);
     res.status(500).json({ message: 'Error saving bookmark', error });
-  }
-});
-
-app.get('/bookmarks', async (req, res) => {
-  try {
-    console.log("Fetching bookmarks...");
-    res.setHeader('Content-Type', 'application/json');
-    const data = await BookmarkModel.find();
-    console.log('Data fetched:', data);
-    res.json(data);
-  } catch (error) {
-    console.error('Error fetching communities:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
