@@ -20,7 +20,7 @@ const BookmarkButton = ({ id, displayName }) => {
       alert('Bookmarked successfully!');
     } catch (error) {
       console.error('Error bookmarking:', error);
-      alert('Failed to bookmark.');
+      alert('Failed to bookmark/Already Bookmarked');
     }
   };
 
