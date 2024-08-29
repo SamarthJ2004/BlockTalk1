@@ -4,11 +4,13 @@ import GetTweets from '../getTweets';
 import './css/Profile.css';
 import Sidebar from './Sidebar';
 import RightSidebar from './RightSidebar';
+import EtherFunc from '../logic';
 import "../App.css";
 
 const Profile = () => {
   const [post, setPost] = useState([]);
   const [currentAccount, setCurrentAccount] = useState('');
+  const [profile, setProfile] = useState({});
 
   const getAccount = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_accounts' });
@@ -17,12 +19,17 @@ const Profile = () => {
 
   getAccount();
 
-  const profileDetails = {
-    username: currentAccount,
-    tweetsCount: post.length,
-    tokenCount: 46,
-    nftCount: 78
-  };
+  const getUser = async () => {
+    const userDetails = await EtherFunc({ func: 'getUser', message: "We got the user", id: currentAccount });
+
+    const profileDetails = {
+      username: currentAccount,
+      tweetsCount: post.length,
+      tokenCount: parseInt(userDetails[1]._hex, 16),
+      nftCount: userDetails[2].length
+    };
+    setProfile(profileDetails);
+  }
 
   const setTweets = async () => {
     const tweets = await GetTweets();
@@ -32,7 +39,8 @@ const Profile = () => {
 
   useEffect(() => {
     setTweets();
-  }, []);
+    getUser();
+  }, [profile]);
 
   return (
     <div className="app">
@@ -43,11 +51,11 @@ const Profile = () => {
         </div>
         <div className="profile-info">
           <div className="profile-details">
-            <p>{profileDetails.username}</p>
+            <p>{profile.username}</p>
             <div className="profile-stats">
-              <span><strong>{profileDetails.tweetsCount}</strong> Tweets</span>
-              <span><strong>{profileDetails.tokenCount}</strong> Tokens</span>
-              <span><strong>{profileDetails.nftCount}</strong> NFTs</span>
+              <span><strong>{profile.tweetsCount}</strong> Tweets</span>
+              <span><strong>{profile.tokenCount}</strong> Tokens</span>
+              <span><strong>{profile.nftCount}</strong> NFTs</span>
             </div>
           </div>
         </div>

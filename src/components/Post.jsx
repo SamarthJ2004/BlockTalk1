@@ -34,12 +34,13 @@ const Post = () => {
         />
 
         <button
-          onClick={() => sendTweet()}
+          onClick={sendTweet}
           type="submit"
           className="tweetBox__Button"
         >
           Tweet
         </button>
+
       </form>
     </div>
   )

@@ -24,6 +24,10 @@ const EtherFunc = async ({ func, id, message }) => {
         const trendingTweets = await TwitterContract.getTrendingTweets();
         return trendingTweets;
       }
+      else if (func == 'getUser') {
+        const userDetails = await TwitterContract.getUserDetails();
+        return userDetails;
+      }
       console.log({ message });
     } else {
       console.log("Ethereum object doesn't exist");
