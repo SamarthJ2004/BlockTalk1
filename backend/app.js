@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 app.set('view engine', 'ejs');
 app.use(cors({
-  origin: 'https://samarthj2004.github.io/BlockTalk',
+  origin: 'https://samarthj2004.github.io',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
