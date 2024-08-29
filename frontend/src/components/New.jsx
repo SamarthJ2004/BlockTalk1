@@ -7,7 +7,7 @@ const New = () => {
   const [communities, setCommunities] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3011/communities')
+    fetch('https://blocktalk-backend-ah8p.onrender.com/communities')
       .then(response => {
         if (!response.ok) {
           throw new Error(`Network response was not ok: ${response.statusText}`);
