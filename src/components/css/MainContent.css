@@ -10,7 +10,7 @@
   -ms-overflow-style: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   gap: 10px;
-  max-width: 40%;
+  width: 40%;
 }
 
 .main-content::-webkit-scrollbar {

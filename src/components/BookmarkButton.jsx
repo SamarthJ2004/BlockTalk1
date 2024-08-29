@@ -1,18 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import { useState } from 'react';
 
 const BookmarkButton = ({ title, text, displayName }) => {
-
-  const [currentAccount, setCurrentAccount] = useState('');
-  const getAccount = async () => {
-    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-    setCurrentAccount(accounts[0]);
-  }
-
-  getAccount();
-
 
   const handleBookmark = async () => {
     try {

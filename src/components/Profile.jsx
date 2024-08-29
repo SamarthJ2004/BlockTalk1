@@ -53,10 +53,7 @@ const Profile = () => {
         </div>
 
         <div className="profile-content">
-          <div className="profile-tabs">
-            <button className="active">Tweets</button>
-            <button>Liked/Bookmarked</button>
-          </div>
+          <div className="profile-tab">Your Tweets</div>
 
           <div className="profile-tweets">
             {post.length === 0 ? (

@@ -1,8 +1,8 @@
 import React from 'react'
-import Sidebar from './components/Sidebar'
-import New from './New'
-import RightSidebar from './components/RightSidebar'
-import "./App.css";
+import Sidebar from './Sidebar'
+import New from '../New'
+import RightSidebar from './RightSidebar'
+import "../App.css";
 
 const Com = () => {
   return (

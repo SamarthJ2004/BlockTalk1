@@ -5,7 +5,7 @@
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   gap: 10px;
-  max-width: 40%;
+  width: 40%;
 }
 
 .pro::-webkit-scrollbar {
@@ -76,27 +76,13 @@
   -ms-overflow-style: none;
 }
 
-.profile-tabs {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-  gap: 30px;
-  padding: 0px 20px;
-}
-
-.profile-tabs button {
-  flex: 1;
-  padding: 10px;
+.profile-tab{
+  width: 100%;
+  text-align: center;
   border: none;
-  color: #657786;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.profile-tabs button.active,
-.profile-tabs button:hover {
-  color: #1DA1F2;
+  color: #008cff;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .profile-tweets {

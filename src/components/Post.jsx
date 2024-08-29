@@ -8,7 +8,7 @@ const Post = () => {
 
   const sendTweet = (e) => {
     e.preventDefault();
-    EtherFunc({id:{tweetTitle,tweetMessage},func:"addTweet",message:"The tweet was added"});
+    EtherFunc({ id: { tweetTitle, tweetMessage }, func: "addTweet", message: "The tweet was added" });
     setTweetTitle("");
     setTweetMessage("");
   };
@@ -22,6 +22,7 @@ const Post = () => {
           className="tweetBox__title"
           placeholder="Add Your Tweet Title"
           type="text"
+          required
         />
         <input
           onChange={(e) => setTweetMessage(e.target.value)}
@@ -29,10 +30,11 @@ const Post = () => {
           placeholder="What's happening?"
           type="text"
           className='tweetBox__content'
+          required
         />
 
         <button
-          onClick={sendTweet}
+          onClick={() => sendTweet()}
           type="submit"
           className="tweetBox__Button"
         >

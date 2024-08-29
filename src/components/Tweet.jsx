@@ -12,14 +12,12 @@ const Tweet = forwardRef(
   ({ id, displayName, title, text, time, personal, upvote, downvote }, ref) => {
 
     const getTimeDifference = (blockTimestamp) => {
-      const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-      const differenceInSeconds = currentTime - blockTimestamp; // Difference in seconds
+      const currentTime = Math.floor(Date.now() / 1000);
+      const differenceInSeconds = currentTime - blockTimestamp;
 
-      // Constants for time calculations
-      const secondsInDay = 60 * 60 * 24; // Total seconds in a day
-      const secondsInHour = 60 * 60; // Total seconds in an hour
+      const secondsInDay = 60 * 60 * 24;
+      const secondsInHour = 60 * 60;
 
-      // Calculate total days and remaining hours
       const days = Math.floor(differenceInSeconds / secondsInDay);
       const hours = Math.floor((differenceInSeconds % secondsInDay) / secondsInHour);
 
@@ -44,7 +42,7 @@ const Tweet = forwardRef(
           <div className="post__headerDescription">{text || "No Body"}</div>
 
           <div className="post__footer">
-            <BookmarkButton displayName={displayName} title={title} text={text}></BookmarkButton>
+            <BookmarkButton displayName={displayName} title={title} text={text}/>
             {personal && <DeleteIcon fontSize='small' onClick={() => EtherFunc({ id, func: 'deleteTweet', message: "The tweet was deleted" })} />}
             <div>
               <ThumbUpIcon fontSize="small" onClick={() => EtherFunc({ id, func: 'upvote', message: "The vote was increased" })} /> {upvote}
@@ -52,9 +50,6 @@ const Tweet = forwardRef(
             <div>
               <ThumbDownIcon fontSize="small" onClick={() => EtherFunc({ id, func: 'downvote', message: "The vote was decreased" })} /> {downvote}
             </div>
-            {/* {personal ? (
-              <DeleteIcon fontSize="small" onClick={onClick}/>
-            ) : null} */}
           </div>
 
         </div>
