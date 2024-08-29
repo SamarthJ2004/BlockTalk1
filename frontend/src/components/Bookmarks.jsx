@@ -30,7 +30,7 @@ const Bookmarks = () => {
       let account = currentAccount.toUpperCase();
       console.log(account);
 
-      const response = await fetch(`http://localhost:3011/bookmarks`, {
+      const response = await fetch(`https://blocktalk-backend-ah8p.onrender.com/bookmarks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
